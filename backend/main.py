@@ -4,6 +4,8 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 from pydantic import BaseModel
 from datetime import datetime
+from dotenv import load_dotenv
+load_dotenv()  # ← Загружает переменные из .env в окружение
 
 from database import engine, Base, SessionLocal, get_db
 from models import Building as DBBuilding, Room, Step as DBStep, Article, User
