@@ -8,10 +8,12 @@ import BasePage from "../BasePage/BasePage";
 import styles from './Styles.module.scss'
 import InfoMap from "../../components/InfoMap/InfoMap";
 import dormitory from "../../assets/dormitory.svg"
+import { useNavigate } from "react-router";
 
 const API_URL = import.meta.env.VITE_API_URL
 
 function DormitoryPage() {
+  const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(false)
   const [info, setInfo] = useState({ content: "", checklist: [] }) 
   const [loading, setLoading] = useState(true)
@@ -34,7 +36,12 @@ function DormitoryPage() {
     <>
        {loading && <Loading/>}
 
-      {isVisible && <SuccessPopup to={"/long-registration"}/>}
+      {isVisible && (
+        <SuccessPopup 
+          onNext={() => navigate("/long-registration")} 
+          onClose={() => setIsVisible(prev => !prev)}
+        />
+      )}
 
       <BasePage />
       <InfoMap zoom={11}>

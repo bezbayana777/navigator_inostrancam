@@ -1,0 +1,143 @@
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: absolute;
+  z-index: 1;
+  margin: 20px ;
+  overflow: hidden;
+  width: clamp(300px, 200px, 100px);
+  border-radius: clamp(14px, 3vw, 20px);
+  padding: clamp(16px, 4vw, 22px) clamp(20px, 5vw, 28px);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  margin-bottom: clamp(16px, 3vw, 24px);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.04);
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+
+  &.safe {
+    background: linear-gradient(135deg, var(--blue-color) 0%, var(--blue-2-color) 100%);
+    box-shadow: 0 6px 24px rgba(45, 91, 227, 0.35);
+
+    .progressFill { background: rgba(255,255,255,0.6); }
+    .progressBar  { background: rgba(255,255,255,0.2); }
+  }
+
+  &.warning {
+    background: linear-gradient(135deg, var(--orange-color) 0%, var(--orange-2-color) 100%);
+    box-shadow: 0 6px 24px rgba(224, 124, 0, 0.35);
+
+    .progressFill { background: rgba(255,255,255,0.6); }
+    .progressBar  { background: rgba(255,255,255,0.2); }
+  }
+
+  &.critical {
+    background: linear-gradient(135deg, var(--red-color) 0%, var(--red-2-color) 100%);
+    box-shadow: 0 6px 24px rgba(211, 47, 47, 0.4);
+    animation: pulse 1.8s ease-in-out infinite;
+
+    .progressFill { background: rgba(255,255,255,0.6); }
+    .progressBar  { background: rgba(255,255,255,0.2); }
+  }
+
+  &.done {
+    background: linear-gradient(135deg, var(--green-color) 0%, var(--green-2-color) 100%);
+    box-shadow: 0 6px 24px rgba(46, 125, 50, 0.3);
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 3vw, 16px);
+}
+
+.emoji {
+  font-size: clamp(28px, 7vw, 36px);
+  flex-shrink: 0;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.label {
+  font-size: clamp(14px, 3.8vw, 17px);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.sub {
+  font-size: clamp(11px, 3vw, 13px);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 8px 18px;
+  backdrop-filter: blur(4px);
+  min-width: 70px;
+}
+
+.days {
+  font-size: clamp(26px, 7vw, 34px);
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.daysLabel {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.doneText {
+  font-size: clamp(14px, 4vw, 16px);
+  font-weight: 700;
+  color: #ffffff;
+}
+
+
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 0 0 20px 20px;
+  transition: width 0.8s ease;
+}
+
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 6px 24px rgba(211, 47, 47, 0.4); }
+  50%       { box-shadow: 0 6px 36px rgba(211, 47, 47, 0.7); }
+}

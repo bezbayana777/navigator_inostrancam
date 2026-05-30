@@ -1,4 +1,4 @@
-import type { ChangeEvent } from "react";
+
 import styles from './Styles.module.scss'
 
 
@@ -6,22 +6,21 @@ export interface SelectProps {
   setLanguage: (language: string) => void
 }
 
-function Select({setLanguage}: SelectProps) {
+import { useTranslation } from 'react-i18next';
 
-  const onChange = (evt: ChangeEvent<HTMLSelectElement>) => {
-    setLanguage(evt.target.value)
-  }
-
+function Select() {
+  const { i18n } = useTranslation();
 
   return (
-    <>
-      <select className={styles.select} onChange={onChange}>
-        <option value="Russian">Русский</option>
-        <option value="English">English</option>
-        <option value="Chinese">中文</option>
-      </select>
-    </>
-  )
+    <select
+      className={styles.select}
+      value={i18n.language}
+      onChange={(e) => i18n.changeLanguage(e.target.value)}
+    >
+      <option value="ru">Русский</option>
+      <option value="en">English</option>
+      <option value="zh">中文</option>
+    </select>
+  );
 }
-
 export default Select;

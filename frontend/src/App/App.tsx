@@ -6,17 +6,22 @@ import { BrowserRouter, } from 'react-router'
 
 import AppRouter from '../routes/AppRouter.tsx'
 
+
+
+
 function App() {
 
 
   return (
     <>
       <BrowserRouter>
-        <AppRouter />
-        
+
+          <AppRouter />
+      
       </BrowserRouter>
     </>
   )
+
 }
 
 export default App

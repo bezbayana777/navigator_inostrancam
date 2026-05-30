@@ -1,0 +1,46 @@
+{
+  "checklist": {
+    "title": "My Tasks",
+    "completed": "completed"
+  },
+  "popup": {
+    "congrats": "Congratulations!",
+    "stepDone": "You have successfully completed this step",
+    "leaveReview": "Leave a review",
+    "nextStep": "Go to next step"
+  },
+  "mainPage": {
+    "title": "Navigator for International Students",
+    "subtitle": "Step-by-step guide to adaptation in Russia",
+    "step_0": "Obtaining migration card and visa",
+    "step_1": "Initial entry",
+    "step_2": "Moving into dormitory",
+    "step_3": "Long-term registration",
+    "step_4": "Obtaining TRP/Temporary Residence Permit",
+    "step_5": "FAQ (Frequently Asked Questions)"
+  },
+  "button": {
+    "enter": "Login",
+    "register": "Create account"
+  },
+  "registration": {
+    "question": "Dont't have an account?",
+    "title": "Create account"
+  },
+  "login-form": {
+    "btn": "Login",
+    "error-invalid": "Incorrect username or password",
+    "username": "Username",
+    "password": "Password"
+  },
+  "registration-form": {
+    "title": "Registration",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "country": "Country",
+    "btn-title": "Create account",
+    "error": "An error occurred during registration",
+    "error-invalid": "Incorrect username or password"
+  }
+}

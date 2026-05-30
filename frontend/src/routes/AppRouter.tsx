@@ -14,29 +14,15 @@ import Registration from '../pages/Registration/Registration'
 import DormitoryPage from '../pages/DormitoryPage/DormitoryPage'
 import VNJPage from '../pages/VNJPage/VNJPage'
 import FaqPage from '../pages/FAQ/FaqPage'
+import DeportationTimerPage from '../pages/DeportationPage/DeportationPage'
 
 
 // const API_URL = import.meta.env.VITE_API_URL
 
 function AppRouter() {
 
-  const [language, setLanguage] = useState("Russian")
-
-
-  // useEffect(() => {
-  //   if (language === "Russian"){
-  //     setCardsData(RussianCardsData)
-  //   }
-  //   else if (language === "English") {
-  //     setCardsData(EnglishCardsData)
-  //   }
-  //   else {
-  //     setCardsData(ChineseCardsData)
-  //   }
-  // }, [language])
-
   const navigationRoutes = [
-    {path: "/", page: <MainPage setLanguage={setLanguage}/>},
+    {path: "/", page: <MainPage />},
     {path: "/plane", page: <PlanePage/>},
     {path: "/check-in", page: <InitialCheckInPage />},
     {path: "/dorm", page: <DormitoryPage />},
@@ -45,6 +31,7 @@ function AppRouter() {
     {path: "/faq", page: <FaqPage />},
     {path: "/login", page: <Login />},
     {path: "/registration", page: <Registration />},
+    {path: "/deportation", page: <DeportationTimerPage />},
     {path: "/*", page: <NotFoundPage/>}
   ]
 

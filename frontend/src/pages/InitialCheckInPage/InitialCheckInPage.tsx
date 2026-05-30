@@ -2,7 +2,6 @@ import InfoMap from "../../components/InfoMap/InfoMap"
 import PageCard from "../../components/PageCard/PageCard"
 import BasePage from "../BasePage/BasePage"
 import styles from "./Styles.module.scss"
-import { steps } from "../../DB/points"
 import { bankGeoJSON, mfcGeoJSON } from "../../utils/placeGeneration"
 import InfoPanel from "../../components/InfoPanel/InfoPanel"
 import { useEffect, useState } from "react"
@@ -10,11 +9,14 @@ import Loading from "../../components/Loading/Loading"
 import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup"
 import Checklist from "../../components/Checklist/Checklist"
 import motorcycle from "../../assets/motorcycle.svg"
+import { useNavigate } from "react-router"
+import { useBuildings } from "../../Hooks/useBuildings"
 
 const API_URL = import.meta.env.VITE_API_URL
 
 function InitialCheckInPage() {
 
+  const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(false)
   const [info, setInfo] = useState({ content: "", checklist: [] }) 
   const [loading, setLoading] = useState(true)
@@ -33,14 +35,48 @@ function InitialCheckInPage() {
         })
     }, [])
 
+
+    const { allBuildings, loading: loadingBuildings } = useBuildings()
+  // Функция, которая просто возвращает все здания (для InfoMap)
+  const getAllBuildingsGeoJSON = () => {
+    return {
+      type: "FeatureCollection",
+      features: allBuildings.map((building) => ({
+        type: "Feature",
+        id: building.id,
+        geometry: {
+          type: "Point",
+          coordinates: [building.lon, building.lat]
+        },
+        properties: {
+          name: building.name,
+          address: building.address,
+          hintContent: building.name,
+          balloonContent: `
+            <div style="padding: 10px;">
+              <strong>${building.name}</strong><br/>
+              ${building.address}<br/>
+              <small>${building.description}</small>
+            </div>
+          `
+        }
+      }))
+    };
+  };
+
   return (
     <>
        {loading && <Loading/>}
 
-      {isVisible && <SuccessPopup to={"/dorm"}/>}
+      {isVisible && (
+        <SuccessPopup 
+          onNext={() => navigate("/dorm")} 
+          onClose={() => setIsVisible(prev => !prev)}
+        />
+      )}
 
       <BasePage />
-      <InfoMap features={[mfcGeoJSON, bankGeoJSON]} presets={["islands#purpleDotIcon", "islands#greenMoneyIcon"]} zoom={11}>
+      <InfoMap features={[getAllBuildingsGeoJSON]} presets={["islands#purpleDotIcon", "islands#greenMoneyIcon"]} zoom={11}>
         <div className={styles.container__info}>
           <PageCard step_id={info.step_id} title={info.title} icon_link={motorcycle} />
           <InfoPanel description={info.content} />

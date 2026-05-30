@@ -1,0 +1,22 @@
+{
+  "checklist": {
+    "title": "我的任务",
+    "completed": "已完成"
+  },
+  "popup": {
+    "congrats": "恭喜！",
+    "stepDone": "您已成功完成此步骤",
+    "leaveReview": "留下评价",
+    "nextStep": "进入下一步"
+  },
+  "mainPage": {
+    "title": "外国留学生导航",
+    "subtitle": "在俄罗斯适应的逐步指南",
+    "step_0": "获取移民卡和签证",
+    "step_1": "初次入境",
+    "step_2": "入住宿舍",
+    "step_3": "长期登记",
+    "step_4": "获得临时居留许可/永久居留许可",
+    "step_5": "常见问题解答"
+  }
+}

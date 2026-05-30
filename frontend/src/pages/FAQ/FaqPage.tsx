@@ -8,11 +8,13 @@ import InfoPanel from "../../components/InfoPanel/InfoPanel";
 import Checklist from "../../components/Checklist/Checklist";
 import faq from "../../assets/faq.svg";
 import styles from "./Styles.module.scss";
+import { useNavigate } from "react-router";
 
 
 const API_URL = import.meta.env.VITE_API_URL
 
 function FaqPage() {
+  const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(false)
   const [info, setInfo] = useState({ content: "", checklist: [] }) 
   const [loading, setLoading] = useState(true)
@@ -33,9 +35,14 @@ function FaqPage() {
 
   return (
     <>
-       {loading && <Loading/>}
+      {loading && <Loading/>}
 
-      {isVisible && <SuccessPopup to={"/"}/>}
+      {isVisible && (
+        <SuccessPopup 
+          onNext={() => navigate("/check-in")} 
+          onClose={() => setIsVisible(prev => !prev)}
+        />
+      )}
 
       <BasePage />
       <InfoMap zoom={11}>

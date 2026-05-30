@@ -7,13 +7,15 @@ import Button from "../../components/UI/Button/Button"
 import { useEffect, useState } from "react"
 import { steps } from "../../DB/points"
 import InfoPanel from "../../components/InfoPanel/InfoPanel"
-import { closeGeoJSON, longGeoJSON } from "../../utils/placeGeneration"
+
 import Checklist from "../../components/Checklist/Checklist"
 
 import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup"
 import Loading from "../../components/Loading/Loading"
 
 import plane from "../../assets/plane.svg"
+import { useNavigate } from "react-router"
+import { useBuildings } from "../../Hooks/useBuildings"
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -22,30 +24,73 @@ function PlanePage() {
   const [isVisible, setIsVisible] = useState(false)
   
   const [info, setInfo] = useState({ content: "", checklist: [] }) 
-  const [loading, setLoading] = useState(true)
+  const [loadingArticles, setLoadingArticles] = useState(true)
 
+  const navigate = useNavigate()
+
+  // Загрузка статей
   useEffect(() => {
     fetch(`${API_URL}/steps/0/articles`)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         setInfo(data[0])
-        setLoading(false)
+        setLoadingArticles(false)
       })
       .catch(error => {
         console.error("Ошибка:", error)
-        setLoading(false)
+        setLoadingArticles(false)
       })
   }, [])
+
   
+  const { allBuildings, loading: loadingBuildings } = useBuildings()
+  // Функция, которая просто возвращает все здания (для InfoMap)
+  const getAllBuildingsGeoJSON = () => {
+    return {
+      type: "FeatureCollection",
+      features: allBuildings.map((building) => ({
+        type: "Feature",
+        id: building.id,
+        geometry: {
+          type: "Point",
+          coordinates: [building.lon, building.lat]
+        },
+        properties: {
+          name: building.name,
+          address: building.address,
+          hintContent: building.name,
+          balloonContent: `
+            <div style="padding: 10px;">
+              <strong>${building.name}</strong><br/>
+              ${building.address}<br/>
+              <small>${building.description}</small>
+            </div>
+          `
+        }
+      }))
+    };
+  };
+
+  if (loadingArticles || loadingBuildings) {
+    return <Loading />
+  }
+
   return (
     <>
-      {loading && <Loading/>}
-
-      {isVisible && <SuccessPopup to={"/check-in"}/>}
+      {isVisible && (
+        <SuccessPopup 
+          onNext={() => navigate("/check-in")} 
+          onClose={() => setIsVisible(prev => !prev)}
+        />
+      )}
 
       <BasePage/>
-      <InfoMap features={[closeGeoJSON, longGeoJSON]} presets={["islands#blueDotIcon", "islands#redDotIcon"]} zoom={4}>
+      
+      <InfoMap 
+        features={[getAllBuildingsGeoJSON]} 
+        presets={["islands#blueDotIcon"]} 
+        zoom={4}
+      >
         <div className={styles.container__info}>
           <PageCard step_id={info.step_id} title={info.title} icon_link={plane} />
 

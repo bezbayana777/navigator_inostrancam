@@ -8,11 +8,13 @@ import BasePage from "../BasePage/BasePage";
 import styles from "./Styles.module.scss";
 import docs from "../../assets/docs.svg";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 
 const API_URL = import.meta.env.VITE_API_URL
 
 function VNJPage() {
+  const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(false)
   const [info, setInfo] = useState({ content: "", checklist: [] }) 
   const [loading, setLoading] = useState(true)
@@ -35,7 +37,12 @@ function VNJPage() {
     <>
        {loading && <Loading/>}
 
-      {isVisible && <SuccessPopup to={"/faq"}/>}
+      {isVisible && (
+        <SuccessPopup 
+          onNext={() => navigate("/check-in")} 
+          onClose={() => setIsVisible(prev => !prev)}
+        />
+      )}
 
       <BasePage />
       <InfoMap zoom={11}>
