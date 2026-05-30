@@ -46,9 +46,8 @@ function SuccessPopup({ onClose, onNext }: SuccessPopupProps) {
           <h2 className={styles.popupTitle}>{t('popup.congrats')}</h2>
           <p className={styles.popupSubtitle}>{t('popup.stepDone')}</p>
 
-          <div className={styles.popupBadge}>Шаг завершён ✓</div>
+          <div className={styles.popupBadge}>{t('success-popup.completed')} ✓</div>
 
-          {/* Кнопка отзыва */}
           {!reviewDone ? (
             <button
               className={styles.popupReviewBtn}
@@ -57,22 +56,21 @@ function SuccessPopup({ onClose, onNext }: SuccessPopupProps) {
               ✏️ {t('popup.leaveReview')}
             </button>
           ) : (
-            <p className={styles.popupReviewDone}>Спасибо за отзыв! 🙏</p>
+            <p className={styles.popupReviewDone}>{t('success-popup.thanks')} 🙏</p>
           )}
 
-          {/* Кнопка перехода — заблокирована до отзыва */}
           <button
             className={`${styles.popupCta} ${!reviewDone ? styles.popupCtaDisabled : ""}`}
             onClick={onNext}
             disabled={!reviewDone}
-            title={!reviewDone ? "Сначала оставьте отзыв" : ""}
+            title={!reviewDone ? t('success-popup.review') : ""}
           >
             {t('popup.nextStep')} →
           </button>
 
           {!reviewDone && (
             <p className={styles.popupHint}>
-              Оставьте отзыв, чтобы продолжить
+              {t('success-popup.hint')}
             </p>
           )}
         </div>

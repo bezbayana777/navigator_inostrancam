@@ -15,6 +15,7 @@ import DormitoryPage from '../pages/DormitoryPage/DormitoryPage'
 import VNJPage from '../pages/VNJPage/VNJPage'
 import FaqPage from '../pages/FAQ/FaqPage'
 import DeportationTimerPage from '../pages/DeportationPage/DeportationPage'
+import PlaneMapPage from '../pages/Maps/PlaneMapPage.tsx/PlaneMapPage'
 
 
 // const API_URL = import.meta.env.VITE_API_URL
@@ -32,7 +33,8 @@ function AppRouter() {
     {path: "/login", page: <Login />},
     {path: "/registration", page: <Registration />},
     {path: "/deportation", page: <DeportationTimerPage />},
-    {path: "/*", page: <NotFoundPage/>}
+    {path: "/*", page: <NotFoundPage/>},
+    { path: "/plane/map", page: <PlaneMapPage /> }
   ]
 
   return (

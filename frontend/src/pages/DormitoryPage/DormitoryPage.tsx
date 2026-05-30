@@ -4,11 +4,11 @@ import InfoPanel from "../../components/InfoPanel/InfoPanel";
 import Loading from "../../components/Loading/Loading";
 import PageCard from "../../components/PageCard/PageCard";
 import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup";
-import BasePage from "../BasePage/BasePage";
 import styles from './Styles.module.scss'
 import InfoMap from "../../components/InfoMap/InfoMap";
 import dormitory from "../../assets/dormitory.svg"
 import { useNavigate } from "react-router";
+import ReturnButton from "../../components/ReturnButton/ReturnButton";
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -22,7 +22,6 @@ function DormitoryPage() {
       fetch(`${API_URL}/steps/2/articles`)
         .then(response => response.json())
         .then(data => {
-          console.log(data)
           setInfo(data[0])
           setLoading(false)
         })
@@ -43,7 +42,7 @@ function DormitoryPage() {
         />
       )}
 
-      <BasePage />
+      <ReturnButton />
       <InfoMap zoom={11}>
         <div className={styles.container__info}>
           <PageCard step_id={info.step_id} title={info.title} icon_link={dormitory} />

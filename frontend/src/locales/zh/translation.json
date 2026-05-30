@@ -6,17 +6,88 @@
   "popup": {
     "congrats": "恭喜！",
     "stepDone": "您已成功完成此步骤",
-    "leaveReview": "留下评价",
+    "leaveReview": "留下反馈",
     "nextStep": "进入下一步"
   },
   "mainPage": {
-    "title": "外国留学生导航",
-    "subtitle": "在俄罗斯适应的逐步指南",
+    "title": "外国留学生导航仪",
+    "subtitle": "适应俄罗斯生活的分步指南",
     "step_0": "获取移民卡和签证",
     "step_1": "初次入境",
     "step_2": "入住宿舍",
-    "step_3": "长期登记",
-    "step_4": "获得临时居留许可/永久居留许可",
+    "step_3": "长期居留登记",
+    "step_4": "获取临时/永久居留许可",
     "step_5": "常见问题解答"
+  },
+  "button": {
+    "enter": "登录",
+    "register": "注册"
+  },
+  "registration": {
+    "question": "还没有账号？",
+    "title": "注册"
+  },
+  "login-form": {
+    "btn": "登录",
+    "error-invalid": "用户名或密码错误",
+    "username": "用户名",
+    "password": "密码"
+  },
+  "registration-form": {
+    "title": "注册",
+    "name": "姓名",
+    "email": "电子邮箱",
+    "password": "密码",
+    "country": "国家",
+    "btn-title": "注册",
+    "error": "注册失败",
+    "error-invalid": "用户名或密码无效"
+  },
+  "deportation-banner": {
+    "done": "文件已备妥",
+    "critical": "紧急！时间紧迫",
+    "warning": "请尽快办理登记",
+    "safe": "居留期限",
+    "timer": "点击打开计时器",
+    "ready": "已完成",
+    "days": "天"
+  },
+  "deportation-page": {
+    "notification": "乌拉尔联邦大学 - 居留登记通知",
+    "msg-less-0": "⚠️ 居留期限已过！请立即联系移民部门",
+    "msg-less-7": "🚨 居留期限还剩 ${daysLeft} 天！",
+    "msg-less-14": "⚠️ 居留期限还剩 ${daysLeft} 天。请勿拖延！",
+    "msg-less-30": "📅 居留期限还剩 ${daysLeft} 天。",
+    "msg": "✅ 居留期限还剩 ${daysLeft} 天。",
+    "ready-registration": "登记已完成",
+    "staying": "居留期限",
+    "isDone-true": "您已成功完成所有登记步骤",
+    "isDone-false": "距允许居留期限结束还有",
+    "days": "天",
+    "went": "已过",
+    "90days": "90天",
+    "entry": "入境日期",
+    "deadline": "截止日期",
+    "status": "状态",
+    "urgent": "紧急！",
+    "hurry": "请抓紧时间",
+    "ok": "好的",
+    "enable-notification": "开启通知",
+    "registration-success": "我已获得居留登记和居留许可",
+    "timer-success": "计时器已停止。您的文件齐全合规",
+    "reset": "重置（再次入境）"
+  },
+  "registration-popup": {
+    "confirm": "确认操作",
+    "confirm-question-1": "您确定已获得所有必要文件吗？",
+    "confirm-question-2": "确定已获得居留登记和临时居留许可吗？",
+    "confirm-yes": "是，一切就绪",
+    "confirm-no": "否，取消"
+  },
+  "success-popup": {
+    "completed": "此步骤已完成",
+    "thanks": "感谢您的反馈",
+    "review": "请先留下反馈",
+    "hint": "请留下反馈以继续"
   }
 }

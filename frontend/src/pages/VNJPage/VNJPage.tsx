@@ -4,11 +4,11 @@ import InfoPanel from "../../components/InfoPanel/InfoPanel";
 import Loading from "../../components/Loading/Loading";
 import PageCard from "../../components/PageCard/PageCard";
 import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup";
-import BasePage from "../BasePage/BasePage";
 import styles from "./Styles.module.scss";
 import docs from "../../assets/docs.svg";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import ReturnButton from "../../components/ReturnButton/ReturnButton";
 
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -44,7 +44,7 @@ function VNJPage() {
         />
       )}
 
-      <BasePage />
+      <ReturnButton />
       <InfoMap zoom={11}>
         <div className={styles.container__info}>
           <PageCard step_id={info.step_id} title={info.title} icon_link={docs} />

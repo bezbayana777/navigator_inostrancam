@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import BasePage from "../BasePage/BasePage";
 import Loading from "../../components/Loading/Loading";
 import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup";
 import InfoMap from "../../components/InfoMap/InfoMap";
@@ -9,6 +8,7 @@ import Checklist from "../../components/Checklist/Checklist";
 import faq from "../../assets/faq.svg";
 import styles from "./Styles.module.scss";
 import { useNavigate } from "react-router";
+import ReturnButton from "../../components/ReturnButton/ReturnButton";
 
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -44,7 +44,7 @@ function FaqPage() {
         />
       )}
 
-      <BasePage />
+      <ReturnButton />
       <InfoMap zoom={11}>
         <div className={styles.container__info}>
           <PageCard step_id={info.step_id} title={info.title} icon_link={faq} />

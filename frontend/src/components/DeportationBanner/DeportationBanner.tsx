@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import styles from "./Styles.module.scss";
+import { useTranslation } from "react-i18next";
 
 const STORAGE_KEY = "deportation_start_date";
 const STORAGE_DONE_KEY = "deportation_done";
@@ -15,6 +16,9 @@ function getDaysLeft(): number {
 }
 
 function DeportationBanner() {
+
+  const { t } = useTranslation()
+
   const isDone = localStorage.getItem(STORAGE_DONE_KEY) === "true";
   const daysLeft = getDaysLeft();
   const progress = ((TOTAL_DAYS - daysLeft) / TOTAL_DAYS) * 100;
@@ -23,10 +27,10 @@ function DeportationBanner() {
     isDone ? "done" : daysLeft <= 7 ? "critical" : daysLeft <= 30 ? "warning" : "safe";
 
   const label = {
-    done: "Документы оформлены",
-    critical: "Срочно! Осталось мало времени",
-    warning: "Торопитесь с оформлением",
-    safe: "Срок пребывания",
+    done: t('deportation-banner.done'),
+    critical: t('deportation-banner.critical'),
+    warning: t('deportation-banner.warning'),
+    safe: t('deportation-banner.safe'),
   }[urgency];
 
   const emoji = { done: "✅", critical: "🚨", warning: "⚠️", safe: "🆗" }[urgency];
@@ -38,18 +42,18 @@ function DeportationBanner() {
         <div className={styles.text}>
           <span className={styles.label}>{label}</span>
           {!isDone && (
-            <span className={styles.sub}>Нажмите, чтобы открыть таймер</span>
+            <span className={styles.sub}>{t('deportation-banner.timer')}</span>
           )}
         </div>
       </div>
 
       <div className={styles.right}>
         {isDone ? (
-          <span className={styles.doneText}>Готово</span>
+          <span className={styles.doneText}>{t('deportation-banner.ready')}</span>
         ) : (
           <>
             <span className={styles.days}>{daysLeft}</span>
-            <span className={styles.daysLabel}>дней</span>
+            <span className={styles.daysLabel}>{t('deportation-banner.days')}</span>
           </>
         )}
       </div>

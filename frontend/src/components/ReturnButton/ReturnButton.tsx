@@ -8,7 +8,6 @@ import arrow_back from '../../assets/arrow_back.svg'
 
 function BasePage() {
 
-  
 
   return (
     <> 

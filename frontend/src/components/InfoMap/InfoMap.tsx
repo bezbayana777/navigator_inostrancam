@@ -1,16 +1,18 @@
 import { YMaps, Map, ObjectManager } from "@pbe/react-yandex-maps";
 import styles from "./Styles.module.scss"
 import { type ReactNode } from "react";
+import { Link } from "react-router";
 
 
 type InfoMapProps = {
-  features?: any, //FeatureCollection[], если установили @types/geojson
+  features?: any, 
   presets?: string[],
   zoom: number,
-  children: ReactNode
+  children: ReactNode,
+  mapRoute?: string;
 }
 
-function InfoMap({ features, presets, zoom, children }: InfoMapProps) {
+function InfoMap({ features, presets, zoom, children, mapRoute }: InfoMapProps) {
 
   const renderPlacemarks = () => {
     return features.map((feature, index) => {return (
@@ -32,6 +34,13 @@ function InfoMap({ features, presets, zoom, children }: InfoMapProps) {
   return (
     <div className={styles.container}>
       {children}
+
+      {/* Кнопка только на мобильном */}
+      {mapRoute && (
+        <Link to={mapRoute} className={styles.mapMobileBtn}>
+          🗺️ Открыть карту
+        </Link>
+      )}
     
       <div className={styles.container__map}>
         <YMaps query={{apikey: import.meta.env.VITE_API_KEY, load: 'package.full'}}>

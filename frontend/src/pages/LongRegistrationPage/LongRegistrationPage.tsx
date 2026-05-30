@@ -5,10 +5,11 @@ import InfoPanel from "../../components/InfoPanel/InfoPanel"
 import Loading from "../../components/Loading/Loading"
 import PageCard from "../../components/PageCard/PageCard"
 import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup"
-import BasePage from "../BasePage/BasePage"
 import docs from "../../assets/docs.svg"
 import { useEffect, useState } from "react"
 import styles from "./Styles.module.scss"
+import ReturnButton from "../../components/ReturnButton/ReturnButton"
+import { useNavigate } from "react-router"
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -17,6 +18,7 @@ function InitialRegistrationPage(){
 const [isVisible, setIsVisible] = useState(false)
   const [info, setInfo] = useState({ content: "", checklist: [] }) 
   const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
   
     useEffect(() => {
       fetch(`${API_URL}/steps/3/articles`)
@@ -36,9 +38,9 @@ const [isVisible, setIsVisible] = useState(false)
     <>
        {loading && <Loading/>}
 
-      {isVisible && <SuccessPopup to={"/vnj"}/>}
+      {isVisible && <SuccessPopup onNext={() => navigate("/vnj")} onClose={() => setIsVisible(prev => !prev)}/>}
 
-      <BasePage />
+      <ReturnButton />
       <InfoMap zoom={11}>
         <div className={styles.container__info}>
           <PageCard step_id={info.step_id} title={info.title} icon_link={docs} />
