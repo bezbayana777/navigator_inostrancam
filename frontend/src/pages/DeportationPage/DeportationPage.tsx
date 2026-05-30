@@ -1,6 +1,7 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useTransition } from "react";
 import styles from "./Styles.module.scss";
-import BasePage from "../BasePage/BasePage";
+import { useTranslation } from "react-i18next";
+import RegistrationPopup from "../../Popups/RegistrationPopup/RegistrationPopup";
 
 const STORAGE_KEY = "deportation_start_date";
 const STORAGE_DONE_KEY = "deportation_done";
@@ -27,28 +28,32 @@ function requestNotificationPermission() {
 }
 
 function sendNotification(daysLeft: number) {
+  
+
   if (!("Notification" in window) || Notification.permission !== "granted") return;
 
   let message = "";
   if (daysLeft <= 0) {
-    message = "⚠️ Срок пребывания истёк! Немедленно обратитесь в миграционный отдел.";
+    message = ''
   } else if (daysLeft <= 7) {
-    message = `🚨 Осталось всего ${daysLeft} дн. до истечения срока пребывания!`;
+    message = ''
   } else if (daysLeft <= 14) {
-    message = `⚠️ До истечения срока пребывания осталось ${daysLeft} дней. Не затягивайте!`;
+    message = ''
   } else if (daysLeft <= 30) {
-    message = `📅 До истечения срока пребывания осталось ${daysLeft} дней.`;
+    message = ''
   } else {
-    message = `✅ До истечения срока пребывания осталось ${daysLeft} дней.`;
+    message = ''
   }
 
-  new Notification("УрФУ — Напоминание о регистрации", {
+  new Notification("UrFU - notification about registration", {
     body: message,
     icon: "/favicon.ico",
   });
 }
 
 function DeportationTimerPage() {
+  
+  const {t} = useTranslation()
   const [startDate] = useState<Date>(getStartDate);
   const [daysLeft, setDaysLeft] = useState<number>(() => getDaysLeft(getStartDate()));
   const [isDone, setIsDone] = useState<boolean>(
@@ -114,23 +119,21 @@ function DeportationTimerPage() {
 
   return (
     <>
-      <BasePage />
       <div className={`${styles.page} ${urgencyClass}`}>
         <div className={styles.bg} aria-hidden />
 
         <div className={styles.content}>
           <div className={styles.header}>
             <h1 className={styles.title}>
-              {isDone ? "Регистрация оформлена" : "Срок пребывания"}
+              {isDone ? t('deportation-page.ready-registration') : t('deportation-page.staying')}
             </h1>
             <p className={styles.subtitle}>
               {isDone
-                ? "Вы успешно прошли все этапы оформления"
-                : "Дней до истечения разрешённого срока пребывания"}
+                ? t('deportation-page.isDone-true')
+                : t('deportation-page.isDone-false')}
             </p>
           </div>
 
-          {/* Круговой таймер */}
           <div className={styles.timerWrapper}>
             <svg className={styles.ring} viewBox="0 0 280 280">
               <circle
@@ -159,13 +162,12 @@ function DeportationTimerPage() {
               ) : (
                 <>
                   <span className={styles.daysNumber}>{daysLeft}</span>
-                  <span className={styles.daysLabel}>дней</span>
+                  <span className={styles.daysLabel}>{t('deportation-page.days')}</span>
                 </>
               )}
             </div>
           </div>
 
-          {/* Прогресс-полоска */}
           {!isDone && (
             <div className={styles.progressSection}>
               <div className={styles.progressBar}>
@@ -176,25 +178,24 @@ function DeportationTimerPage() {
               </div>
               <div className={styles.progressLabels}>
                 <span>Въезд</span>
-                <span>{Math.round(progress)}% прошло</span>
-                <span>90 дней</span>
+                <span>{Math.round(progress)}% {t('deportation-page.went')}</span>
+                <span>{t('deportation-page.90days')}</span>
               </div>
             </div>
           )}
 
-          {/* Статус-карточки */}
           {!isDone && (
             <div className={styles.cards}>
               <div className={styles.card}>
                 <span className={styles.cardIcon}>📅</span>
-                <span className={styles.cardLabel}>Дата въезда</span>
+                <span className={styles.cardLabel}>{t('deportation-page.entry')}</span>
                 <span className={styles.cardValue}>
                   {startDate.toLocaleDateString("ru-RU")}
                 </span>
               </div>
               <div className={styles.card}>
                 <span className={styles.cardIcon}>⏳</span>
-                <span className={styles.cardLabel}>Крайняя дата</span>
+                <span className={styles.cardLabel}>{t('deportation-page.deadline')}</span>
                 <span className={styles.cardValue}>
                   {new Date(
                     startDate.getTime() + TOTAL_DAYS * 24 * 60 * 60 * 1000
@@ -205,41 +206,39 @@ function DeportationTimerPage() {
                 <span className={styles.cardIcon}>
                   {daysLeft <= 7 ? "🚨" : daysLeft <= 30 ? "⚠️" : "✅"}
                 </span>
-                <span className={styles.cardLabel}>Статус</span>
+                <span className={styles.cardLabel}>{t('deportation-page.status')}</span>
                 <span className={styles.cardValue}>
                   {daysLeft <= 7
-                    ? "Срочно!"
+                    ? t("deportation-page.urgent")
                     : daysLeft <= 30
-                    ? "Торопитесь"
-                    : "Всё ок"}
+                    ? t("deportation-page.hurry")
+                    : t("deportation-page.ok")}
                 </span>
               </div>
             </div>
           )}
 
-          {/* Уведомления */}
           {"Notification" in window && !notifGranted && !isDone && (
             <button className={styles.notifBtn} onClick={handleRequestNotif}>
-              🔔 Включить напоминания
+              🔔 {t('deportation-page.enable-notification')}
             </button>
           )}
 
-          {/* Кнопки */}
           <div className={styles.actions}>
             {!isDone ? (
               <button
                 className={styles.doneBtn}
                 onClick={() => setShowConfirm(true)}
               >
-                ✓ Я получил регистрацию и прописку
+                ✓ {t('deportation-page.registration-success')}
               </button>
             ) : (
               <div className={styles.doneCard}>
                 <p className={styles.doneText}>
-                  Таймер остановлен. Ваши документы в порядке 🎉
+                  {t('deportation-page.timer-success')} 🎉
                 </p>
                 <button className={styles.resetBtn} onClick={handleReset}>
-                  Сбросить (въехал заново)
+                  {t('deportation-page.reset')}
                 </button>
               </div>
             )}
@@ -247,29 +246,7 @@ function DeportationTimerPage() {
         </div>
 
         {/* Модалка подтверждения */}
-        {showConfirm && (
-          <div className={styles.confirmOverlay}>
-            <div className={styles.confirmModal}>
-              <h3 className={styles.confirmTitle}>Подтвердите действие</h3>
-              <p className={styles.confirmText}>
-                Вы уверены, что получили все необходимые документы?
-                <br />
-                <strong>Регистрацию и прописку</strong> по месту проживания?
-              </p>
-              <div className={styles.confirmActions}>
-                <button className={styles.confirmYes} onClick={handleDone}>
-                  Да, всё готово
-                </button>
-                <button
-                  className={styles.confirmNo}
-                  onClick={() => setShowConfirm(false)}
-                >
-                  Нет, отмена
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        {showConfirm && <RegistrationPopup setShowConfirm={setShowConfirm} handleDone={handleDone} />}
       </div>
     </>
   );

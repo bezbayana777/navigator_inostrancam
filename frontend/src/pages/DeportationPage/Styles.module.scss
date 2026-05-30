@@ -15,7 +15,7 @@ $radius-card: 16px;
 .page {
   min-height: 100vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   padding: clamp(24px, 6vw, 60px) clamp(16px, 5vw, 40px);
   position: relative;
@@ -77,7 +77,6 @@ $radius-card: 16px;
   }
 }
 
-// ── Контент ───────────────────────────────────────────────────
 .content {
   position: relative;
   z-index: 1;
@@ -90,7 +89,7 @@ $radius-card: 16px;
   padding-top: 32px;
 }
 
-// ── Заголовок ─────────────────────────────────────────────────
+
 .header {
   text-align: center;
 }
@@ -111,7 +110,7 @@ $radius-card: 16px;
   line-height: 1.5;
 }
 
-// ── Кольцевой таймер ──────────────────────────────────────────
+
 .timerWrapper {
   position: relative;
   width: clamp(200px, 55vw, 280px);
@@ -169,7 +168,7 @@ $radius-card: 16px;
   animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
-// ── Прогресс ──────────────────────────────────────────────────
+
 .progressSection {
   width: 100%;
   display: flex;
@@ -200,7 +199,7 @@ $radius-card: 16px;
   color: $text-muted;
 }
 
-// ── Карточки-статы ────────────────────────────────────────────
+
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -246,7 +245,7 @@ $radius-card: 16px;
   font-weight: 700;
 }
 
-// ── Кнопка уведомлений ────────────────────────────────────────
+
 .notifBtn {
   background: $white;
   border: 1.5px solid var(--accent);
@@ -264,7 +263,7 @@ $radius-card: 16px;
   }
 }
 
-// ── Действия ──────────────────────────────────────────────────
+
 .actions {
   width: 100%;
 }
@@ -327,85 +326,6 @@ $radius-card: 16px;
     border-color: $critical-accent;
     color: $critical-accent;
   }
-}
-
-// ── Confirm Modal ─────────────────────────────────────────────
-.confirmOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(90, 100, 120, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  padding: 16px;
-}
-
-.confirmModal {
-  background: $white;
-  border-radius: clamp(12px, 3vw, 20px);
-  padding: clamp(24px, 6vw, 36px);
-  max-width: min(90%, 420px);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-.confirmTitle {
-  margin: 0;
-  font-size: clamp(18px, 5vw, 22px);
-  font-weight: 700;
-  color: $text-dark;
-}
-
-.confirmText {
-  margin: 0;
-  font-size: clamp(13px, 3.5vw, 15px);
-  color: $text-muted;
-  line-height: 1.6;
-
-  strong {
-    color: $text-dark;
-  }
-}
-
-.confirmActions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.confirmYes {
-  flex: 1;
-  padding: clamp(12px, 3vw, 14px);
-  background: $safe-accent;
-  color: $white;
-  border: none;
-  border-radius: 12px;
-  font-size: clamp(13px, 3.5vw, 15px);
-  font-weight: 600;
-  cursor: pointer;
-  transition: filter 0.2s;
-
-  &:hover { filter: brightness(1.1); }
-}
-
-.confirmNo {
-  flex: 1;
-  padding: clamp(12px, 3vw, 14px);
-  background: transparent;
-  color: $text-muted;
-  border: 1.5px solid #d9d9d9;
-  border-radius: 12px;
-  font-size: clamp(13px, 3.5vw, 15px);
-  font-weight: 600;
-  cursor: pointer;
-  transition: border-color 0.2s;
-
-  &:hover { border-color: $text-muted; }
 }
 
 // ── Animations ────────────────────────────────────────────────

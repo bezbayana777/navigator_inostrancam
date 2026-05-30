@@ -1,8 +1,6 @@
 import InfoMap from "../../components/InfoMap/InfoMap"
 import PageCard from "../../components/PageCard/PageCard"
 import styles from "./Styles.module.scss"
-
-import BasePage from "../BasePage/BasePage"
 import Button from "../../components/UI/Button/Button"
 import { useEffect, useState } from "react"
 import { steps } from "../../DB/points"
@@ -16,6 +14,7 @@ import Loading from "../../components/Loading/Loading"
 import plane from "../../assets/plane.svg"
 import { useNavigate } from "react-router"
 import { useBuildings } from "../../Hooks/useBuildings"
+import ReturnButton from "../../components/ReturnButton/ReturnButton"
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -84,12 +83,13 @@ function PlanePage() {
         />
       )}
 
-      <BasePage/>
+      <ReturnButton/>
       
       <InfoMap 
         features={[getAllBuildingsGeoJSON]} 
         presets={["islands#blueDotIcon"]} 
         zoom={4}
+        mapRoute="/plane/map"
       >
         <div className={styles.container__info}>
           <PageCard step_id={info.step_id} title={info.title} icon_link={plane} />

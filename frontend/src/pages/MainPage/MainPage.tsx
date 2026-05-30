@@ -5,6 +5,7 @@ import Header from '../../components/Header/Header'
 import { useEffect, useState } from 'react'
 import Loading from '../../components/Loading/Loading'
 import DeportationBanner from '../../components/DeportationBanner/DeportationBanner'
+import styles from './Styles.module.scss'
 
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -23,7 +24,6 @@ function MainPage() {
       .then(data => {
         setCards(data);   
         setLoading(false)
-        console.log('Данные получены:', data);
       })
       .catch(err => console.error('Ошибка:', err));
   }, []);
@@ -32,8 +32,8 @@ function MainPage() {
   return (
     <>
       <Header />
-      <DeportationBanner />  
       <Title />
+      <DeportationBanner />
       {loading ? <Loading text={"Загрузка..."}/> : <CardList cardsData={cards}/>}
     </>
   )

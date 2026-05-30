@@ -42,5 +42,53 @@
     "btn-title": "Create account",
     "error": "An error occurred during registration",
     "error-invalid": "Incorrect username or password"
+  },
+  "deportation-banner": {
+    "done": "Documents are ready!",
+    "critical": "Urgent! Time is running up",
+    "warning": "Hurry up with the registration",
+    "safe": "Duration of stay",
+    "timer": "Press to open the timer",
+    "ready": "Ready",
+    "days": "days"
+  },
+  "deportation-page": {
+    "notification": "UrFU - notification about registration",
+    "msg-less-0": "⚠️ The period of stay has expired! Contact the migration department immediately",
+    "msg-less-7": "`🚨 There are only ${daysLeft} days left. before the end of the stay!`",
+    "msg-less-14": "`⚠️ There are ${daysLeft} days left before the end of the stay. Don't delay!`",
+    "msg-less-30": "`📅 There are ${daysLeft} days left before the end of the stay.`",
+    "msg": "`✅ There are ${daysLeft} days left before the end of the stay.`",
+    "ready-registration": "The registration is ready",
+    "staying": "Duration of stay",
+    "isDone-true": "You have successfully completed all the registration steps",
+    "isDone-false": "Days before the expiration of the permitted period of stay",
+    "days": "days",
+    "went": "went",
+    "90days": "90 days",
+    "entry": "Date of entry",
+    "deadline": "Deadline date",
+    "status": "Status",
+    "urgent": "Urgent!",
+    "hurry": "Hurry up",
+    "ok": "OK",
+    "enable-notification": "Enable notifications",
+    "registration-success": "I got my registration and residence permit",
+    "timer-success": "The timer is stopped. Your documents are in order",
+    "reset": "Reset (re-entered)"
+  },
+  "registration-popup": {
+    "confirm": "Confirm the action",
+    "confirm-question-1": "Are you sure that you have received all the necessary documents?",
+    "confirm-question-2": "Registration and residence permit at the place of residence?",
+    "confirm-yes": "Yes, everything is ready",
+    "confirm-no": "No, cancel"
+  },
+  "success-popup": {
+    "completed": "This step is completed",
+    "thanks": "Thank you for review",
+    "review": "Leave a review first",
+    "hint": "Leave a review to continue"
   }
+
 }
