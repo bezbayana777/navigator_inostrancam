@@ -1,7 +1,6 @@
 import InfoMap from "../../components/InfoMap/InfoMap"
 import PageCard from "../../components/PageCard/PageCard"
 import styles from "./Styles.module.scss"
-import { bankGeoJSON, mfcGeoJSON } from "../../utils/placeGeneration"
 import InfoPanel from "../../components/InfoPanel/InfoPanel"
 import { useEffect, useState } from "react"
 import Loading from "../../components/Loading/Loading"
@@ -25,7 +24,6 @@ function InitialCheckInPage() {
       fetch(`${API_URL}/steps/1/articles`)
         .then(response => response.json())
         .then(data => {
-          console.log(data)
           setInfo(data[0])
           setLoading(false)
         })

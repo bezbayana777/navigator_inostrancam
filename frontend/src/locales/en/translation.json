@@ -20,7 +20,8 @@
     "step_5": "FAQ (Frequently Asked Questions)"
   },
   "button": {
-    "enter": "Login",
+    "login": "Login",
+    "logout": "Log out",
     "register": "Create account"
   },
   "registration": {
@@ -95,6 +96,24 @@
     "error-message": "Oops! The page you're looking for does not exist",
     "return": "Go home"
   },
-  "map": "Open the map"
+  "map": "Open the map",
+  "review-popup": {
+    "review": "Leave a review",
+    "review-subtitle": "Help the following students by sharing your experience",
+    "stress-level": "Stress level",
+    "stress-lvl-1": "Calm",
+    "stress-lvl-2": "A little worried",
+    "stress-lvl-3": "Medium stressed",
+    "stress-lvl-4": "Severe stress",
+    "stress-lvl-5": "Very stressful",
+    "queue": "Waiting time in the queue",
+    "graphics-question": "Did the work schedule match the specified one?",
+    "yes": "Yes",
+    "no": "No",
+    "custom": "My variant",
+    "hint": "Describe the situation",
+    "docs-question": "What documents are needed?",
+    "submit": "Send a review"
+  }
 
 }

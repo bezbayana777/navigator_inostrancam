@@ -17,6 +17,7 @@ import { useBuildings } from "../../Hooks/useBuildings"
 import ReturnButton from "../../components/ReturnButton/ReturnButton"
 import { useTranslation } from "react-i18next"
 import { type InfoCard } from "../../types"
+import { cardsInfo } from "../../DB/cardsInfo"
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -31,7 +32,6 @@ function PlanePage() {
 
   const { t, i18n } = useTranslation()
 
-  // Загрузка статей
   useEffect(() => {
     fetch(`${API_URL}/steps/0/articles`)
       .then(response => response.json())
@@ -41,6 +41,7 @@ function PlanePage() {
       })
       .catch(error => {
         console.error("Ошибка:", error)
+        setInfo(cardsInfo[0])
         setLoadingArticles(false)
       })
   }, [])

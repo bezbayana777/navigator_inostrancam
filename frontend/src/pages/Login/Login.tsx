@@ -58,7 +58,7 @@ function Login() {
     <div className={styles.container}>
       <form className={styles.container__form} onSubmit={handleSubmit}>
         <div className={styles.container__header}>
-          <h2 className={styles.container__title}>{t('button.enter')}</h2>
+          <h2 className={styles.container__title}>{t('button.login')}</h2>
           <Link to={"/"}><img src={urfu} className={styles.container__logo} alt="logo" /></Link>
         </div>
 
@@ -81,7 +81,7 @@ function Login() {
           required 
         />
  
-        <button type='submit' className={styles.container__button}>{t('button.enter')}</button>
+        <button type='submit' className={styles.container__button}>{t('button.login')}</button>
         <p className={styles.container__footer}>{t('registration.question')} <Link className={styles.container__footer_link} to="/registration">{t('registration.title')}</Link></p>
 
       </form>
