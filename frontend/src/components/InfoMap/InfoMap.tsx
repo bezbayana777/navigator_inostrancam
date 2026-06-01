@@ -35,7 +35,6 @@ function InfoMap({ features, presets, zoom, children, mapRoute }: InfoMapProps) 
     <div className={styles.container}>
       {children}
 
-      {/* Кнопка только на мобильном */}
       {mapRoute && (
         <Link to={mapRoute} className={styles.mapMobileBtn}>
           🗺️ Открыть карту

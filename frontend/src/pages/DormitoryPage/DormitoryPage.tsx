@@ -7,15 +7,17 @@ import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup";
 import styles from './Styles.module.scss'
 import InfoMap from "../../components/InfoMap/InfoMap";
 import dormitory from "../../assets/dormitory.svg"
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import ReturnButton from "../../components/ReturnButton/ReturnButton";
+import { t } from "i18next";
+import { type InfoCard } from "../../types";
 
 const API_URL = import.meta.env.VITE_API_URL
 
 function DormitoryPage() {
   const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(false)
-  const [info, setInfo] = useState({ content: "", checklist: [] }) 
+  const [info, setInfo] = useState<InfoCard>() 
   const [loading, setLoading] = useState(true)
   
     useEffect(() => {
@@ -45,6 +47,11 @@ function DormitoryPage() {
       <ReturnButton />
       <InfoMap zoom={11}>
         <div className={styles.container__info}>
+
+          <Link to="/plane/map" className={styles.mapMobileBtn}>
+            🗺️ {t('map')}
+          </Link>
+
           <PageCard step_id={info.step_id} title={info.title} icon_link={dormitory} />
           <InfoPanel description={info.content} />
           {info.checklist && info.checklist.length > 0 && (

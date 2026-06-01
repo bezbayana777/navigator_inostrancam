@@ -12,9 +12,11 @@ import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup"
 import Loading from "../../components/Loading/Loading"
 
 import plane from "../../assets/plane.svg"
-import { useNavigate } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { useBuildings } from "../../Hooks/useBuildings"
 import ReturnButton from "../../components/ReturnButton/ReturnButton"
+import { useTranslation } from "react-i18next"
+import { type InfoCard } from "../../types"
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -22,10 +24,12 @@ function PlanePage() {
   const [location, setLocation] = useState<'close'|'far'|null>(null)
   const [isVisible, setIsVisible] = useState(false)
   
-  const [info, setInfo] = useState({ content: "", checklist: [] }) 
+  const [info, setInfo] = useState<InfoCard>() 
   const [loadingArticles, setLoadingArticles] = useState(true)
 
   const navigate = useNavigate()
+
+  const { t, i18n } = useTranslation()
 
   // Загрузка статей
   useEffect(() => {
@@ -43,7 +47,7 @@ function PlanePage() {
 
   
   const { allBuildings, loading: loadingBuildings } = useBuildings()
-  // Функция, которая просто возвращает все здания (для InfoMap)
+
   const getAllBuildingsGeoJSON = () => {
     return {
       type: "FeatureCollection",
@@ -89,10 +93,14 @@ function PlanePage() {
         features={[getAllBuildingsGeoJSON]} 
         presets={["islands#blueDotIcon"]} 
         zoom={4}
-        mapRoute="/plane/map"
       >
         <div className={styles.container__info}>
-          <PageCard step_id={info.step_id} title={info.title} icon_link={plane} />
+
+          <Link to="/plane/map" className={styles.mapMobileBtn}>
+            🗺️ {t('map')}
+          </Link>
+          
+          <PageCard step_id={1} title={info?.title} icon_link={plane}  />
 
           <h3 className={styles.container__subtitle}>Выбери, откуда ты</h3>
           <div className={styles.container__buttons}>
@@ -103,11 +111,11 @@ function PlanePage() {
           {location === "close" && <InfoPanel description={steps[0].description_for_near_abroad}/>}
           {location === "far" && <InfoPanel description={steps[0].description_for_far_abroad}/>}
 
-          <InfoPanel description={info.content} />
+          <InfoPanel description={i18n.language === "ru" ? info?.content : info?.content_en} />
           
           <h3 className={styles.container__subtitle}>Чеклист</h3>
           <ul className={styles.container__checklist}>     
-            {info.checklist && info.checklist.length > 0 && (
+            {info?.checklist && info.checklist.length > 0 && (
               <Checklist checklist={info.checklist} setIsVisible={setIsVisible}/>
             )}
           </ul>

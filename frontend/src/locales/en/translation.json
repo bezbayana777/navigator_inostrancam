@@ -89,6 +89,12 @@
     "thanks": "Thank you for review",
     "review": "Leave a review first",
     "hint": "Leave a review to continue"
-  }
+  },
+  "not-found-page": {
+    "error-code": "404 Error",
+    "error-message": "Oops! The page you're looking for does not exist",
+    "return": "Go home"
+  },
+  "map": "Open the map"
 
 }

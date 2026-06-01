@@ -4,8 +4,8 @@ interface PageCardProps {
   step_id: number;
   title: string;
   icon_link: string;
-  description?: string; // Добавил опциональное описание
-  onClick?: () => void; // Добавил обработчик клика
+  description?: string; 
+  onClick?: () => void; 
 }
 
 function PageCard({ step_id, title, icon_link, description, onClick }: PageCardProps) {

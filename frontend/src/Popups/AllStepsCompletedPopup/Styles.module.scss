@@ -1,0 +1,270 @@
+// ── Overlay ───────────────────────────────────────────────────
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--background-blur-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+
+  &.overlayVisible {
+    opacity: 1;
+  }
+}
+
+// ── Popup ─────────────────────────────────────────────────────
+.popup {
+  position: relative;
+  background: var(--white-color);
+  border-radius: var(--big-border-radius);
+  padding: clamp(32px, 6vw, 48px) clamp(24px, 6vw, 40px) clamp(24px, 5vw, 36px);
+  width: 100%;
+  max-width: min(92%, 460px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 3vw, 20px);
+  box-shadow:
+    0 24px 64px rgba(30, 67, 145, 0.18),
+    0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+
+  // анимация появления
+  transform: scale(0.88) translateY(24px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+
+  &.popupVisible {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
+  // верхняя цветная полоска
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--blue-color), var(--green-color), var(--blue-color));
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+}
+
+// ── Кнопка закрыть ────────────────────────────────────────────
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: var(--ultra-light-grey-color);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 13px;
+  color: var(--black-3-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover {
+    background: var(--light-grey-color);
+    color: var(--black-color);
+  }
+}
+
+// ── Конфетти-декор ────────────────────────────────────────────
+.confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confettiPiece {
+  position: absolute;
+  font-size: clamp(18px, 4vw, 24px);
+  animation: floatUp 4s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.6s);
+  opacity: 0;
+
+  &:nth-child(1) { left: 8%;  top: 15%; }
+  &:nth-child(2) { left: 82%; top: 10%; }
+  &:nth-child(3) { left: 50%; top: 5%;  }
+  &:nth-child(4) { left: 20%; top: 70%; }
+  &:nth-child(5) { left: 75%; top: 65%; }
+}
+
+// ── Иконка ────────────────────────────────────────────────────
+.iconRing {
+  width: clamp(76px, 18vw, 92px);
+  height: clamp(76px, 18vw, 92px);
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(30,67,145,0.12), rgba(59,166,140,0.12));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  animation: ringPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+.iconInner {
+  width: clamp(56px, 13vw, 68px);
+  height: clamp(56px, 13vw, 68px);
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--blue-color), var(--green-color));
+  box-shadow: 0 8px 28px rgba(30, 67, 145, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: clamp(26px, 7vw, 32px);
+    height: clamp(26px, 7vw, 32px);
+  }
+}
+
+// ── Текст ─────────────────────────────────────────────────────
+.body {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(20px, 5.5vw, 26px);
+  font-weight: 800;
+  color: var(--blue-color);
+  letter-spacing: -0.4px;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: clamp(13px, 3.5vw, 15px);
+  color: var(--black-3-color);
+  line-height: 1.55;
+  max-width: 340px;
+}
+
+// ── Разделитель ───────────────────────────────────────────────
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--light-grey-color);
+}
+
+// ── FAQ-блок ──────────────────────────────────────────────────
+.faqBlock {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--main-color);
+  border-radius: var(--small-border-radius);
+  padding: clamp(14px, 3vw, 18px) clamp(16px, 4vw, 20px);
+  width: 100%;
+  box-sizing: border-box;
+  border-left: 3px solid var(--blue-color);
+}
+
+.faqIcon {
+  font-size: 22px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.faqText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.faqQuestion {
+  margin: 0;
+  font-size: clamp(13px, 3.5vw, 15px);
+  font-weight: 700;
+  color: var(--blue-color);
+}
+
+.faqSub {
+  margin: 0;
+  font-size: clamp(12px, 3vw, 13px);
+  color: var(--black-3-color);
+  line-height: 1.5;
+}
+
+// ── Кнопки ────────────────────────────────────────────────────
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.faqBtn {
+  width: 100%;
+  padding: clamp(13px, 3.5vw, 16px);
+  background: linear-gradient(135deg, var(--blue-color), var(--blue-2-color));
+  color: var(--white-color);
+  font-size: clamp(14px, 4vw, 16px);
+  font-weight: 700;
+  border: none;
+  border-radius: var(--small-border-radius);
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(30, 67, 145, 0.35);
+  box-sizing: border-box;
+  transition: filter 0.2s, transform 0.15s;
+
+  &:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.closeSecondary {
+  width: 100%;
+  padding: clamp(11px, 3vw, 14px);
+  background: transparent;
+  color: var(--black-3-color);
+  font-size: clamp(13px, 3.5vw, 15px);
+  font-weight: 600;
+  border: 1.5px solid var(--light-grey-color);
+  border-radius: var(--small-border-radius);
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: border-color 0.2s, color 0.2s;
+
+  &:hover {
+    border-color: var(--black-3-color);
+    color: var(--black-color);
+  }
+}
+
+// ── Анимации ──────────────────────────────────────────────────
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes ringPop {
+  from { transform: scale(0.6); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes floatUp {
+  0%   { opacity: 0; transform: translateY(0) scale(0.8); }
+  20%  { opacity: 1; }
+  80%  { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(-60px) scale(1.1); }
+}

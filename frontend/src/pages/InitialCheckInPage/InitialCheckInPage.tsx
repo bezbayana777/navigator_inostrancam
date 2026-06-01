@@ -8,7 +8,7 @@ import Loading from "../../components/Loading/Loading"
 import SuccessPopup from "../../Popups/SuccessPopup/SuccessPopup"
 import Checklist from "../../components/Checklist/Checklist"
 import motorcycle from "../../assets/motorcycle.svg"
-import { useNavigate } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { useBuildings } from "../../Hooks/useBuildings"
 import ReturnButton from "../../components/ReturnButton/ReturnButton"
 
@@ -78,6 +78,11 @@ function InitialCheckInPage() {
       <ReturnButton />
       <InfoMap features={[getAllBuildingsGeoJSON]} presets={["islands#purpleDotIcon", "islands#greenMoneyIcon"]} zoom={11}>
         <div className={styles.container__info}>
+
+          <Link to="/plane/map" className={styles.mapMobileBtn}>
+            🗺️ Открыть карту
+          </Link>
+
           <PageCard step_id={info.step_id} title={info.title} icon_link={motorcycle} />
           <InfoPanel description={info.content} />
           {info.checklist && info.checklist.length > 0 && (

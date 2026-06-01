@@ -3,7 +3,7 @@ import { YMaps, Map, ObjectManager } from "@pbe/react-yandex-maps";
 import styles from "./Styles.module.scss";
 import { useBuildings } from "../../../Hooks/useBuildings";
 import Loading from "../../../components/Loading/Loading";
-import ReturnButton from "../../../components/ReturnButton/ReturnButton";
+
 
 
 function PlaneMapPage() {
@@ -16,7 +16,7 @@ function PlaneMapPage() {
     features: allBuildings.map((b) => ({
       type: "Feature",
       id: b.id,
-      geometry: { type: "Point", coordinates: [b.lon, b.lat] },
+      geometry: { type: "Point", coordinates: [b.lat, b.lon] },
       properties: {
         hintContent: b.name,
         balloonContent: `<div style="padding:10px"><strong>${b.name}</strong><br/>${b.address}</div>`
