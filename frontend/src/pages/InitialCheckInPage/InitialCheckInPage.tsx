@@ -10,6 +10,7 @@ import motorcycle from "../../assets/motorcycle.svg"
 import { Link, useNavigate } from "react-router"
 import { useBuildings } from "../../Hooks/useBuildings"
 import ReturnButton from "../../components/ReturnButton/ReturnButton"
+import AiAdvice from "../../components/AiAdvice/AiAdvice"
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -35,7 +36,7 @@ function InitialCheckInPage() {
 
 
     const { allBuildings, loading: loadingBuildings } = useBuildings()
-  // Функция, которая просто возвращает все здания (для InfoMap)
+
   const getAllBuildingsGeoJSON = () => {
     return {
       type: "FeatureCollection",
@@ -83,6 +84,9 @@ function InitialCheckInPage() {
 
           <PageCard step_id={info.step_id} title={info.title} icon_link={motorcycle} />
           <InfoPanel description={info.content} />
+
+          <AiAdvice stepId={1} /> 
+
           {info.checklist && info.checklist.length > 0 && (
               <Checklist checklist={info.checklist} setIsVisible={setIsVisible}/>
             )}

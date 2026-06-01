@@ -13,6 +13,7 @@ import { getUserIdFromToken } from "../../utils/tokenUtils";
 import { Link } from "react-router";
 import { t } from "i18next";
 import {type InfoCard } from "../../types";
+import AiAdvice from "../../components/AiAdvice/AiAdvice";
 
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -103,6 +104,9 @@ function VNJPage() {
             <> 
               <PageCard step_id={info.step_id} title={info.title} icon_link={docs} />
               <InfoPanel description={info.content} />
+
+              <AiAdvice stepId={4} /> 
+
                 {info.checklist && info.checklist.length > 0 && (
                 <Checklist checklist={info.checklist} onAllCompleted={handleAllCompleted} />
                 )}

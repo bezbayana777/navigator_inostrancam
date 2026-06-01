@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router";
 import ReturnButton from "../../components/ReturnButton/ReturnButton";
 import { t } from "i18next";
 import { type InfoCard } from "../../types";
+import AiAdvice from "../../components/AiAdvice/AiAdvice";
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -55,6 +56,9 @@ function DormitoryPage() {
           
           <PageCard step_id={info.step_id} title={info.title} icon_link={dormitory} />
           <InfoPanel description={info.content} />
+
+          <AiAdvice stepId={2} /> 
+
           {info.checklist && info.checklist.length > 0 && (
             <Checklist checklist={info.checklist} setIsVisible={setIsVisible} />
           )}

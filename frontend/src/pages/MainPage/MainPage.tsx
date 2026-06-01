@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header'
 import { useEffect, useState } from 'react'
 import Loading from '../../components/Loading/Loading'
 import DeportationBanner from '../../components/DeportationBanner/DeportationBanner'
-import styles from './Styles.module.scss'
+
 
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -14,7 +14,7 @@ const API_URL = import.meta.env.VITE_API_URL
 
 function MainPage() {
 
-  const [cards, setCards] = useState([])
+  const [cards, setCards] = useState()
   const [loading, setLoading] = useState(true)
 
   
@@ -25,7 +25,9 @@ function MainPage() {
         setCards(data);   
         setLoading(false)
       })
-      .catch(err => console.error('Ошибка:', err));
+      .catch(err => {
+        console.error('Ошибка:', err)
+      });
   }, []);
   
 
