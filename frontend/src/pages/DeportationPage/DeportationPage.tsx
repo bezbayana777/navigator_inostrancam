@@ -245,7 +245,6 @@ function DeportationTimerPage() {
           </div>
         </div>
 
-        {/* Модалка подтверждения */}
         {showConfirm && <RegistrationPopup setShowConfirm={setShowConfirm} handleDone={handleDone} />}
       </div>
     </>

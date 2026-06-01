@@ -89,5 +89,24 @@
     "thanks": "感谢您的反馈",
     "review": "请先留下反馈",
     "hint": "请留下反馈以继续"
+  },
+  "map": "打开地图",
+  "review-popup": {
+    "review": "留下评价",
+    "review-subtitle": "分享您的经验，帮助其他同学",
+    "stress-level": "压力水平",
+    "stress-lvl-1": "平静",
+    "stress-lvl-2": "有点担心",
+    "stress-lvl-3": "中度压力",
+    "stress-lvl-4": "重度压力",
+    "stress-lvl-5": "极度压力",
+    "queue": "排队等待时间",
+    "graphics-question": "工作时间是否与指定时间一致？",
+    "yes": "是",
+    "no": "否",
+    "custom": "其他",
+    "hint": "描述情况",
+    "docs-question": "需要哪些文件？",
+    "submit": "提交评价"
   }
 }

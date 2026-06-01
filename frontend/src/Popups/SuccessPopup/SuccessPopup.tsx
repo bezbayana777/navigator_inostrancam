@@ -1,5 +1,5 @@
 import styles from "./Styles.module.scss";
-import ReviewForm, { type ReviewFormData } from "../../components/ReviewForm/ReviewForm";
+import ReviewForm, { type ReviewFormData } from "../ReviewPopup/ReviewPopup";
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 

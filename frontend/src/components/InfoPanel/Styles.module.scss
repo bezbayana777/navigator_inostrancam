@@ -1,4 +1,4 @@
-// Panel.module.scss
+
 .markdownContent {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   font-size: clamp(14px, 4vw, 16px);
@@ -68,14 +68,13 @@
     color: #3d7ec9;
   }
   
-  // Параграфы
+
   p {
     margin: 16px 0;
     line-height: 1.7;
     color: #2c3e50;
   }
-  
-  // Блоки кода
+
   code {
     font-family: 'Fira Code', 'Monaco', 'Cascadia Code', monospace;
     font-size: 0.9em;
@@ -113,7 +112,6 @@
     }
   }
   
-  // Цитаты
   blockquote {
     margin: 20px 0;
     padding: 16px 24px;
@@ -198,13 +196,11 @@
     }
   }
   
-  // Жирный текст
   strong {
     color: #0d4789;
     font-weight: 700;
   }
   
-  // Курсив
   em {
     font-style: italic;
     color: #5a6e8a;
@@ -212,7 +208,6 @@
     padding: 0 4px;
   }
   
-  // Горизонтальная линия
   hr {
     margin: 32px 0;
     border: none;
@@ -221,7 +216,6 @@
     border-radius: 2px;
   }
   
-  // Ссылки
   a {
     color: #0d4789;
     text-decoration: none;
@@ -242,7 +236,6 @@
     }
   }
   
-  // Изображения
   img {
     max-width: 100%;
     height: auto;
@@ -256,7 +249,6 @@
     }
   }
   
-  // Таблицы
   table {
     width: 100%;
     border-collapse: collapse;
@@ -287,7 +279,6 @@
     }
   }
   
-  // Чекбоксы (для задач)
   input[type="checkbox"] {
     width: 18px;
     height: 18px;
@@ -295,8 +286,7 @@
     cursor: pointer;
     accent-color: #0d4789;
   }
-  
-  // Зачеркнутый текст (для выполненных задач)
+
   del, s {
     color: #999;
     text-decoration: line-through;
@@ -310,13 +300,11 @@
     color: #856404;
   }
   
-  // Подписи
   small {
     font-size: 0.85em;
     color: #6c757d;
   }
   
-  // Кнопки в markdown
   .button {
     display: inline-block;
     padding: 10px 20px;
@@ -333,7 +321,6 @@
     }
   }
   
-  // Сноски
   .footnote {
     font-size: 0.85em;
     color: #6c757d;
@@ -342,7 +329,6 @@
     margin-top: 32px;
   }
   
-  // Адаптивность для мобильных устройств
   @media (max-width: 768px) {
     padding: 12px;
     
@@ -369,12 +355,9 @@
   }
 }
 
-// Дополнительные эффекты
 .markdownContent {
-  // Анимация появления
   animation: fadeIn 0.5s ease;
-  
-  // Скроллбар для блоков кода
+
   pre::-webkit-scrollbar {
     height: 8px;
   }

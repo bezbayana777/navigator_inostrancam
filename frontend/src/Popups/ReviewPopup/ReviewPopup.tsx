@@ -1,7 +1,9 @@
 import { useState } from "react";
 import styles from "./Styles.module.scss";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
-const DOCUMENTS = [
+const RU_DOCUMENTS = [
   { id: "passport", label: "Паспорт" },
   { id: "passportTranslation", label: "Перевод паспорта" },
   { id: "migrationCard", label: "Миграционная карта" },
@@ -12,12 +14,50 @@ const DOCUMENTS = [
   { id: "studentCard", label: "Студенческий билет" },
 ];
 
-const QUEUE_OPTIONS = [
+const EN_DOCUMENTS = [
+  { id: "passport", label: "Passport" },
+  { id: "passportTranslation", label: "Passport Translation" },
+  { id: "migrationCard", label: "Migration Card" },
+  { id: "dactyloscopy", label: "Dactyloscopy Card" },
+  { id: "registration", label: "Registration" },
+  { id: "medicalCert", label: "Medical Examination Certificate" },
+  { id: "dmsPolicy", label: "Voluntary Health Insurance Policy" },
+  { id: "studentCard", label: "Student ID Card" },
+];
+
+const ZH_DOCUMENTS = [
+  { id: "passport", label: "护照" },
+  { id: "passportTranslation", label: "护照翻译件" },
+  { id: "migrationCard", label: "移民卡" },
+  { id: "dactyloscopy", label: "指纹登记卡" },
+  { id: "registration", label: "居留登记" },
+  { id: "medicalCert", label: "体检证明" },
+  { id: "dmsPolicy", label: "自愿医疗保险单" },
+  { id: "studentCard", label: "学生证" },
+];
+
+const RU_QUEUE_OPTIONS = [
   { id: "noQueue", label: "Без очереди" },
   { id: "15min", label: "15 мин" },
   { id: "30min", label: "30 мин" },
   { id: "moreThanHour", label: "Больше часа" },
 ];
+
+const EN_QUEUE_OPTIONS = [
+  { id: "noQueue", label: "No queue" },
+  { id: "15min", label: "15 min" },
+  { id: "30min", label: "30 min" },
+  { id: "moreThanHour", label: "More than an hour" },
+];
+
+const ZH_QUEUE_OPTIONS = [
+  { id: "noQueue", label: "无需排队" },
+  { id: "15min", label: "15分钟" },
+  { id: "30min", label: "30分钟" },
+  { id: "moreThanHour", label: "超过一小时" },
+];
+
+
 
 export type ReviewFormData = {
   stressLevel: number;
@@ -63,6 +103,12 @@ function ReviewForm({ onSubmit, onClose }: ReviewFormProps) {
     });
   };
 
+  const { i18n } =useTranslation()
+
+  const DOCUMENTS = i18n.language === 'ru' ? RU_DOCUMENTS : i18n.language === 'en' ? EN_DOCUMENTS : ZH_DOCUMENTS
+
+  const QUEUE_OPTIONS = i18n.language === 'ru' ? RU_QUEUE_OPTIONS : i18n.language === 'en' ? EN_QUEUE_OPTIONS : ZH_QUEUE_OPTIONS
+
   const activeFlame = hoveredFlame || stressLevel;
 
   return (
@@ -70,12 +116,11 @@ function ReviewForm({ onSubmit, onClose }: ReviewFormProps) {
       <div className={styles.form}>
         <button className={styles.closeBtn} onClick={onClose}>×</button>
 
-        <h2 className={styles.title}>Оставить отзыв</h2>
-        <p className={styles.subtitle}>Помогите следующим студентам — расскажите о своём опыте</p>
+        <h2 className={styles.title}>{t('review-popup.review')}</h2>
+        <p className={styles.subtitle}>{t('review-popup.review-subtitle')}</p>
 
-        {/* Стресс */}
         <div className={styles.section}>
-          <label className={styles.label}>Уровень стресса</label>
+          <label className={styles.label}>{t('review-popup.stress-level')}</label>
           <div className={styles.flames}>
             {[1, 2, 3, 4, 5].map((n) => (
               <button
@@ -85,22 +130,21 @@ function ReviewForm({ onSubmit, onClose }: ReviewFormProps) {
                 onClick={() => setStressLevel(n)}
                 onMouseEnter={() => setHoveredFlame(n)}
                 onMouseLeave={() => setHoveredFlame(0)}
-                aria-label={`Уровень стресса ${n}`}
+                aria-label={`${t('review-popup.stress-level')} ${n}`}
               >
                 🔥
               </button>
             ))}
             {stressLevel > 0 && (
               <span className={styles.flameLabel}>
-                {["", "Спокойно", "Немного волновался", "Средний стресс", "Сильный стресс", "Очень стрессово"][stressLevel]}
+                {["", t('review-popup.stress-lvl-1'), t('review-popup.stress-lvl-2'), t('review-popup.stress-lvl-3'), t('review-popup.stress-lvl-4'), t('review-popup.stress-lvl-5')][stressLevel]}
               </span>
             )}
           </div>
         </div>
 
-        {/* Очередь */}
         <div className={styles.section}>
-          <label className={styles.label}>Время ожидания в очереди</label>
+          <label className={styles.label}>{t('review-popup.queue')}</label>
           <div className={styles.pills}>
             {QUEUE_OPTIONS.map((opt) => (
               <button
@@ -115,9 +159,8 @@ function ReviewForm({ onSubmit, onClose }: ReviewFormProps) {
           </div>
         </div>
 
-        {/* График */}
         <div className={styles.section}>
-          <label className={styles.label}>График работы совпал с указанным?</label>
+          <label className={styles.label}>{t('review-popup.graphics-question')}</label>
           <div className={styles.pills}>
             {(["yes", "no", "custom"] as const).map((val) => (
               <button
@@ -126,23 +169,22 @@ function ReviewForm({ onSubmit, onClose }: ReviewFormProps) {
                 className={`${styles.pill} ${scheduleMatch === val ? styles.pillActive : ""}`}
                 onClick={() => setScheduleMatch(val)}
               >
-                {val === "yes" ? "Да" : val === "no" ? "Нет" : "Свой вариант"}
+                {val === "yes" ? t('review-popup.yes') : val === "no" ? t('review-popup.no') : t('review-popup.custom')}
               </button>
             ))}
           </div>
           {scheduleMatch === "custom" && (
             <input
               className={styles.input}
-              placeholder="Опишите ситуацию..."
+              placeholder={t('review-popup.hint')}
               value={scheduleCustom}
               onChange={(e) => setScheduleCustom(e.target.value)}
             />
           )}
         </div>
 
-        {/* Документы */}
         <div className={styles.section}>
-          <label className={styles.label}>Какие документы понадобились?</label>
+          <label className={styles.label}>{t('review-popup.docs-question')}</label>
           <div className={styles.checkboxGrid}>
             {DOCUMENTS.map((doc) => (
               <label key={doc.id} className={styles.checkboxLabel}>
@@ -166,7 +208,7 @@ function ReviewForm({ onSubmit, onClose }: ReviewFormProps) {
           onClick={handleSubmit}
           disabled={!isValid}
         >
-          Отправить отзыв
+          {t('review-popup.submit')}
         </button>
       </div>
     </div>

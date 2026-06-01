@@ -10,10 +10,11 @@ type ChecklistPoint = {
 type ChecklistProps = {
   checklist: ChecklistPoint[];
   title?: string; 
-  setIsVisible: (value: boolean) => void
+  onAllCompleted?: () => void;
+  setIsVisible?: (value: boolean) => void;
 };
 
-function Checklist({ checklist, title = "Мои задачи", setIsVisible }: ChecklistProps) {
+function Checklist({ checklist, title = "Мои задачи", onAllCompleted, setIsVisible }: ChecklistProps) {
   const [hasTriggeredConfetti, setHasTriggeredConfetti] = useState(false);
   const [progress, setProgress] = useState(0);
   
@@ -48,7 +49,8 @@ function Checklist({ checklist, title = "Мои задачи", setIsVisible }: C
 
     if (allChecked && !hasTriggeredConfetti) {
       setHasTriggeredConfetti(true);
-      setIsVisible(true);
+      onAllCompleted?.();
+      setIsVisible?.(true);
 
       confetti({ particleCount: 150, spread: 100, origin: { x: 0.5, y: 0.5 }, startVelocity: 25 });
       setTimeout(() => confetti({ particleCount: 100, spread: 70, origin: { x: 0.3, y: 0.5 }, startVelocity: 20 }), 200);
@@ -73,7 +75,6 @@ function Checklist({ checklist, title = "Мои задачи", setIsVisible }: C
         </div>
       </div>
 
-      {/* Прогресс-бар */}
       <div className={styles.checklist__progress}>
         <div 
           className={styles.checklist__progressBar} 
@@ -81,7 +82,6 @@ function Checklist({ checklist, title = "Мои задачи", setIsVisible }: C
         />
       </div>
 
-      {/* Список задач */}
       <ul className={styles.checklist__list}>
         {checklistPoints.map((point, index) => (
           <li 

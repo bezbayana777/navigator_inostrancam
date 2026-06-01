@@ -7,12 +7,23 @@
   gap: 16px;
   color: var(--white-color);
 
+  &__error_code {
+    font-size: 2rem;
+  }
+
+  &__error_message {
+    font-size: 1.1rem;
+  }
+
   &__link {
     color: var(--white-color);
     text-decoration: none;
+    background-color: var(--green-color);
+    padding: 15px;
+    border-radius: 10px;
 
     &:hover {
-      color: var(--green-color);
+      color: var(--orange-color);
     }
   }
 }
