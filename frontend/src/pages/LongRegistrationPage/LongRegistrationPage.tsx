@@ -11,6 +11,7 @@ import ReturnButton from "../../components/ReturnButton/ReturnButton"
 import { Link, useNavigate } from "react-router"
 import { t } from "i18next"
 import { type InfoCard } from "../../types"
+import AiAdvice from "../../components/AiAdvice/AiAdvice"
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -33,7 +34,6 @@ function InitialRegistrationPage(){
       })
   }, [])
 
-  // ✅ Показываем загрузку, пока нет данных
   if (loading || !info) {
     return <Loading />
   }
@@ -56,6 +56,9 @@ function InitialRegistrationPage(){
 
           <PageCard step_id={info.step_id} title={info.title} icon_link={docs} />
           <InfoPanel description={info.content} />
+
+          <AiAdvice stepId={3} /> 
+
           {info.checklist && info.checklist.length > 0 && (
             <Checklist checklist={info.checklist} setIsVisible={setIsVisible} />
           )}

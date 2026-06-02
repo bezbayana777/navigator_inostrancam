@@ -17,7 +17,7 @@ import { useBuildings } from "../../Hooks/useBuildings"
 import ReturnButton from "../../components/ReturnButton/ReturnButton"
 import { useTranslation } from "react-i18next"
 import { type InfoCard } from "../../types"
-import { cardsInfo } from "../../DB/cardsInfo"
+import AiAdvice from "../../components/AiAdvice/AiAdvice"
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -41,7 +41,6 @@ function PlanePage() {
       })
       .catch(error => {
         console.error("Ошибка:", error)
-        setInfo(cardsInfo[0])
         setLoadingArticles(false)
       })
   }, [])
@@ -114,6 +113,8 @@ function PlanePage() {
 
           <InfoPanel description={i18n.language === "ru" ? info?.content : info?.content_en} />
           
+          <AiAdvice stepId={0} /> 
+
           <h3 className={styles.container__subtitle}>Чеклист</h3>
           <ul className={styles.container__checklist}>     
             {info?.checklist && info.checklist.length > 0 && (
